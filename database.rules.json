@@ -1,0 +1,172 @@
+{
+  "rules": {
+    "users": {
+      ".read": true,
+      //".write": true,
+      ".indexOn": ["points","name"],
+      "$uid":{
+        ".write": "$uid === auth.uid",
+        "reppedMe": {
+          "$userRepped": {
+            ".write": "!data.exists()"
+          }
+        },
+        "beersRated": {
+          "$beerId": {
+            ".validate": "!data.exists()"
+          }
+        },
+        "reputation": {
+          ".write": "auth!=null"
+        },
+        "friendRequests": {
+          ".write": "auth!=null"
+        },
+        "friends": {
+          ".write": "auth!=null"
+        }
+      }
+    },
+    "beers_checkin": {
+      ".read": true,
+      "$userId": {
+        "$beerId": {
+          ".write": "!data.exists() && $userId === auth.uid"
+        }
+      }
+    },
+    "brewery_google": {
+      ".read": true,
+      ".write": "auth!=null"
+    },
+    "breweries_visited": {
+      ".read": true,
+      "$userId": {
+        "$beerId": {
+          ".write": "$userId === auth.uid"
+        }
+      }
+    },      
+    "notifications_users" :{
+      ".read": true,
+      ".write": true,
+      "$uid" :{
+        ".indexOn": ["priority","read"] 
+      }
+    },
+    "achievements": {
+      ".read": true,
+      ".write": false
+    },
+    "achievements_user": {
+      ".read": true,
+      ".write": "auth!=null"
+    },
+    "location_by_city" :{
+      ".read": true,
+      ".write": true,
+      "$locKey": {
+        ".indexOn": ["checkinCount","name"]
+      }
+    },
+    "beer_events": {
+     ".read": true,
+      ".write": true      
+    },
+    "beer_by_city" :{
+      ".read": true,
+      ".write": true,
+      "$locKey": {
+        ".indexOn": ["checkinCount","name"],
+        "$beerId": {
+          "locations": {
+            ".indexOn": ["name"]
+          }
+        }
+      }
+    },
+    "brewery_by_city": {
+      ".read": true,
+      ".write": true,
+      "$locKey": {
+        ".indexOn": ["checkinCount"]
+      }      
+    },
+    "beers" :{
+      ".read": true,
+      ".write": true      
+    },
+    "checkin" :{
+      ".read": true,
+      ".write": true,
+      "locations": {
+        "$placeId": {
+          ".indexOn": ["priority"]
+        }
+      },
+      "users": {
+        "$userId": {
+          ".indexOn": ["priority"]
+        }
+      },
+      "beers": {
+        "$beerId": {
+          ".indexOn": ["priority"]
+        }
+      },
+      "brewery": {
+        "$breweryId": {
+          ".indexOn": ["priority"]
+        }
+      },
+      "feeds": {
+        ".indexOn": ["priority"]
+      }
+    },
+    "favorite_beers" :{
+      ".read": true,
+      ".write": true,
+      "$userId": {
+        ".indexOn": ["name"]
+      }
+    },
+    "favorite_locations" :{
+      ".read": true,
+      ".write": true,
+      "$userId": {
+        ".indexOn": ["name"]
+      }        
+    },
+    "leaderboard" :{
+      ".read": true,
+      ".write": true,
+      "$dateKey" : {
+        ".indexOn": ["points"] 
+      }      
+    },
+    "location_menu" :{
+      ".read": true,
+      ".write": true,
+      "$placeId": {
+        "beers": {
+          ".indexOn": ["priority","name"]
+        }
+      }
+    },
+    "locations" :{
+      ".read": true,
+      ".write": true     
+    },
+    "notifications" :{
+      ".read": true,
+      ".write": true      
+    },
+    "sequences" :{
+      ".read": true,
+      ".write": true      
+    },
+    "flagged_checkins": {
+      ".write": "auth!=null"
+    }
+  }
+}

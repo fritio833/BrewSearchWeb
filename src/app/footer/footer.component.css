@@ -1,0 +1,37 @@
+.footer {
+    background-color: #333 !important;
+    color:#fff;
+    min-height:10rem;
+}
+
+.footer a {
+    color:#fff;
+    font-weight:1rem;
+    padding: 0 1rem;
+
+}
+
+.footer-top {
+   padding:2rem;
+}
+
+.footer-links {
+    padding-top:3rem;
+}
+
+.copyright {
+    background-color: #222 !important;
+    vertical-align: middle !important;
+}
+
+.copyright h5 {
+    padding:1rem;
+}
+
+.footer hr {
+     border-top: 1px solid #222;
+}
+
+.footer .social {
+    padding:2rem;
+}
