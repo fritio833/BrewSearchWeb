@@ -1,0 +1,28 @@
+<div class="text-center loader" *ngIf="!isLoaded">
+  <app-loader></app-loader>
+</div>
+
+<div id="checkin-well" class="container" *ngIf="isLoaded">
+  <div class="row">
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-block pos-relative p-3">
+                <span>
+                    <img *ngIf="checkin.user.photo !=''" [src]="checkin.user.photo" class="img-circle avatar" />
+                </span>
+                <span id="card-header">
+                    {{checkin.user.name}}
+                </span>
+                <span>
+                  {{timeDifference(checkin.dateCreated)}}
+                </span>
+            </div>
+        </div>
+        <!-- {{checkin.beerDisplayName}} -->
+    </div>
+    <div class="col-md-6">
+      <img [src]="checkin.img" />
+    </div>    
+  </div>
+</div>
+

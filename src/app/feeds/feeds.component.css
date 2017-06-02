@@ -1,0 +1,48 @@
+#feeds {
+    height:100rem !important;
+}
+
+.loader {
+    height:50rem;
+}
+
+.star {
+    font-size: 2rem !important;
+    color: #b0c4de;
+}
+.filled {
+    color: #1e90ff;
+}
+
+.photo {
+    width:500px;
+    height: 240px;
+    overflow: hidden;
+    margin-bottom: 12px;
+	background-repeat: no-repeat;
+	background-size: cover;
+    background-position: center center;
+    cursor: pointer;      
+}
+
+.photo img {
+    width:500px;
+}
+
+#checkin-date {
+    text-align: right;
+    width:auto;
+    background-color: #666;
+}
+
+.container {
+    min-height:100rem;
+}
+
+.view-detail {
+    padding-bottom:2rem;
+}
+
+#card-header {
+    padding-left:1rem;
+}

@@ -1,0 +1,57 @@
+<div class="text-center loader" *ngIf="!showFeed">
+  <app-loader></app-loader>
+</div>
+
+<div class="container" *ngIf="showFeed">
+  <div class="page-title"><h2>Brew Search Feeds</h2></div>
+  <div class="row" *ngFor="let checkin of checkins | async">
+    <div class="col-lg-12">
+      <div class="card mb-4">
+        <div class="card-block pos-relative p-3">
+          <div class="col-md-10">
+            <span>
+              <img *ngIf="checkin.user.photo !=''" [src]="checkin.user.photo" class="img-circle avatar" />
+            </span>
+            <span id="card-header">
+              {{checkin.user.name}} drinking {{checkin.beerName}}  <i *ngIf="checkin.name" class="fa fa-at"></i> {{checkin.name}}
+            </span>
+          </div>
+          <div class="col-md-2 text-right">
+              {{timeDifference(checkin.dateCreated,true)}}
+          </div>
+        </div>
+        <div class="card-block pos-relative p-3 row">
+          <div class="col-md-1 text-center">
+            <img *ngIf="checkin.beerLabelIcon !=''" [src]="checkin.beerLabelIcon" class="img-rounded" />
+          </div>
+          <div class="col-md-11 text-left">
+            <!-- {{checkin.comments}} -->
+            <div *ngIf="checkin.comments">
+             <i class="fa fa-quote-left"></i> {{checkin.comments}} <i class="fa fa-quote-right"></i>
+            </div>
+            <div *ngIf="checkin.beerRating">
+              <ngb-rating readonly="true" max="5" [(rate)]="checkin.beerRating">
+                <ng-template let-fill="fill">
+                  <span class="star" [class.filled]="fill === 100">&#9733;</span>
+                </ng-template>            
+              </ngb-rating>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="checkin.img" class="card-block pos-relative p-3 row text-center">
+          <div class="col-md-12 text-center" >
+              <div align="center">
+                <div [routerLink]="['/checkin',checkin.$key]" class="photo" [ngStyle]="{'background-image': 'url(' + checkin.img + ')'}"></div>
+              </div>
+          </div>
+        </div>
+        <div class="col-md-12 text-right view-detail" >
+          <a [routerLink]="['/checkin',checkin.$key]" class="btn btn-outline-primary" role="button">
+             <i class="fa fa-check-circle"></i>
+            View Check-in Detail
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>  
+</div>

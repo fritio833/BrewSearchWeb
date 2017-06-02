@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+declare var $:any;
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -8,5 +10,11 @@ import { Component } from '@angular/core';
 
 
 export class HeaderComponent {
+
+  ngAfterViewInit(){
+    $('.navbar-nav>li>a').on('click', function(){
+        $('.navbar-collapse').collapse('hide');
+    });    
+  }  
 
 }

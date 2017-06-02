@@ -9,6 +9,8 @@ import { GetappComponent } from './getapp/getapp.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { TermsComponent } from './terms/terms.component';
 import { FaqComponent } from './faq/faq.component';
+import { FeedsComponent } from './feeds/feeds.component';
+import { CheckinComponent } from './checkin/checkin.component';
 
 export const router: Routes = [
   { path:'',component:HomeComponent},  
@@ -18,6 +20,8 @@ export const router: Routes = [
   { path:'getapp',component:GetappComponent},
   { path:'privacy',component:PrivacyComponent},
   { path:'faq',component:FaqComponent},
+  { path:'feeds',component:FeedsComponent},
+  { path:'checkin/:id',component:CheckinComponent},
   { path:'terms',component:TermsComponent}
 ]
 

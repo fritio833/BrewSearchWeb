@@ -4,6 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule, Routes } from '@angular/router';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { environment } from '../environments/environment';
 import { routes } from './app.router';
 
 import { Angular2FontAwesomeModule } from 'angular2-font-awesome/angular2-font-awesome';
@@ -18,6 +22,12 @@ import { GetappComponent } from './getapp/getapp.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { TermsComponent } from './terms/terms.component';
 import { FaqComponent } from './faq/faq.component';
+import { CheckinComponent } from './checkin/checkin.component';
+import { FeedsComponent } from './feeds/feeds.component';
+import { LoaderComponent } from './loader/loader.component';
+
+import { CheckinService } from './checkin.service';
+import { CommonService } from './common.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +40,10 @@ import { FaqComponent } from './faq/faq.component';
     GetappComponent,
     PrivacyComponent,
     TermsComponent,
-    FaqComponent
+    FeedsComponent,
+    CheckinComponent,
+    FaqComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -38,9 +51,15 @@ import { FaqComponent } from './faq/faq.component';
     HttpModule,
     Angular2FontAwesomeModule,
     routes,
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,    
+    AngularFireModule.initializeApp(environment.firebase),
     NgbModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    CheckinService,
+    CommonService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
