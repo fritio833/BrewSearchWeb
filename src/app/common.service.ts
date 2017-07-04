@@ -5,6 +5,38 @@ export class CommonService {
 
   constructor() { }
 
+  showHalfStar(rating) {
+    //console.log(rating);
+    if((rating % 1) > 0.4)
+      return true;
+    else
+      return false;
+  }
+
+  paramCleanup(paramName) {
+    let param = paramName.replace(/\s+/g,"-");
+    return param;
+  }
+
+  dateFriendly(dateStr) {
+    var dateTemp = dateStr.split(" ");
+    var dateFormat = dateTemp[0].split("-");
+    return dateFormat[1]+'/'+dateFormat[2]+'/'+dateFormat[0];
+  }
+  
+  timeConverter(UNIX_timestamp){
+    var a = new Date(UNIX_timestamp * 1000);
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var year = a.getFullYear();
+    var month = a.getMonth()+1;
+    var date = a.getDate();
+    var hour = a.getHours();
+    var min = a.getMinutes();
+    var sec = a.getSeconds();
+    var time =  month + '/'+date + '/' + year;
+    return time;
+  }   
+
   timeDifference(previous, short?) {
 
     

@@ -6,15 +6,18 @@
     line-height: 200%;
     background-color:#eee;
   }
-
-  p {
-    padding-bottom:2rem;
-  }
   
   .icon-bar {
     background-color: #ffffff;
   }
 
+  a {
+    color:#f0ad4e;
+  }
+
+  a:hover {
+    color:#eea236;
+  }
 
   .btn-circle {
     width: 49px;
@@ -51,7 +54,7 @@
   /* Small Devices, Tablets */
   @media only screen and (max-width : 768px) {
     .navbar-inner li.active {
-      background-color:#005DB3;
+      background-color:#A60900;
       box-shadow: none;
     }
 
@@ -105,4 +108,12 @@
 .avatar {
     width:4rem;
     height:4rem;
+}
+
+agm-map {
+  height: 300px;
+}
+
+star-rating-comp .rating {
+  justify-content: left !important;
 }

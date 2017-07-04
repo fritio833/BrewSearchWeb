@@ -1,0 +1,102 @@
+<app-search id="search-box"></app-search>
+
+<div class="text-center loader" *ngIf="!showLocation">
+  <app-loader></app-loader>
+</div>
+
+<div id="brewery-detail" class="container" *ngIf="showLocation">
+
+  <div class="row">
+    <div class="col-md-4 place-img text-center">
+      <img id="place-img" *ngIf="locationPhoto" [src]="locationPhoto" />     
+    </div>
+    <div class="col-md-8">
+      <div class="text-center">
+        <h2>{{location.name}}</h2>
+        <div *ngIf="location.rating">
+          <star-rating-comp [starType]="'icon'"
+                            [readOnly]="true"
+                            [showHalfStars]="common.showHalfStar(location.rating)"
+                            [rating]="location.rating">             
+          </star-rating-comp>
+        </div>
+        <!--
+          <h4 *ngIf="location.opening_hours">
+            <span *ngIf="location.opening_hours.open_now">Currently Open</span>
+            <span *ngIf="!location.opening_hours.open_now">Currently Closed</span>
+          </h4>
+        -->        
+      </div>
+      <div class="alert alert-warning beer-info">
+        <strong>Bar Info</strong>
+        <div>
+          <span *ngIf="location.rating"><i class="fa fa-caret-right"></i>Rating: {{location.rating}} out of 5</span>
+          <span *ngIf="location.international_phone_number">
+            <i class="fa fa-caret-right"></i>Phone: {{location.international_phone_number}}
+          </span>
+          <span *ngFor="let type of placeTypes">
+            <i class="fa fa-caret-right"></i>
+            {{type}}
+          </span>
+        </div>
+        <div>
+          <span><i class="fa fa-caret-right"></i>Address: {{location.vicinity}}</span>
+        </div>
+      </div>
+      <div class="photo-btn">
+        <a *ngIf="location.website" class="btn btn-warning btn-block btn-large" target="_blank" [href]="location.website" role="button">
+          <i class="fa fa-globe"></i> 
+          View Website
+        </a> 
+      </div>
+      <div class="photo-btn" *ngIf="!showPhotos">
+        <button class="photo-btn" (click)="showAllPhotos()" *ngIf="location.photos" class="btn btn-warning btn-block btn-large" role="button">
+          <i class="fa fa-camera-retro"></i> 
+          View {{location.photos.length}} Photos
+        </button>
+      </div>
+    </div>
+  </div>
+  <div id="place-photos" class="row" *ngIf="showPhotos">
+    <div class="col-md-12 text-center">
+      <!--
+      <span *ngFor="let photo of locationPhotos">
+        <img *ngIf="photo" [src]="photo" />
+      </span>
+      -->
+      <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>      
+    </div>
+  </div>
+  <div class="row">
+    <div *ngIf="location.reviews" class="col-md-8">
+        <div class="row" *ngFor="let review of location.reviews">
+          <hr />
+          <div class="col-md-1">
+            <img [src]="review.profile_photo_url" class="rounded-circle review-avatar" />
+          </div>
+          <div class="col-md-10">
+            <p *ngIf="review.rating">
+              <star-rating-comp [starType]="'icon'"
+                                [showHalfStars]="true"
+                                [readOnly]="true"
+                                [rating]="review.rating">             
+              </star-rating-comp>
+            </p>
+            <p *ngIf="review.text">
+              <b>{{review.author_name}} said:</b>
+              {{review.text}}
+            </p>
+            <p class="text-right">
+              {{common.timeConverter(review.time)}}
+            </p>
+          </div>            
+        </div>
+    </div>
+    <div id="bar-hours" class="col-md-3 alert alert-warning beer-info" *ngIf="location.opening_hours">
+      <h4>Bar Hours</h4>
+      <div *ngFor="let hour of location.opening_hours.weekday_text">
+        {{hour}}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BrewerydbService} from '../brewerydb.service';
+import { Router } from '@angular/router';
 
 declare var $:any;
 
@@ -9,8 +11,28 @@ declare var $:any;
 })
 export class HomeComponent  {
 
-  constructor() { }
+  public qBeerSearch:string;
+  public qBarSearch:string;
+  public qBrewerySearch:string;
+  public msg:string = "";
+  public barPlaceHolder = "Enter Bar Name";
+  public barOption:string;
+  public breweryPlaceHolder = "Enter Brewery Name";
+  public breweryOption:string;
+  public beerStorage:any;
 
+
+  constructor(public beerAPI:BrewerydbService, public router:Router) { }
+
+  /*
+  submitSearch(evt) {
+    if (evt.keyCode === 13) {
+      this.doSearch();
+    }
+  }
+  */
+
+  /*
     ngAfterViewInit(){
 
       // makes the parallax elements
@@ -70,5 +92,5 @@ export class HomeComponent  {
       });    
 
     }
-
+  */
 }

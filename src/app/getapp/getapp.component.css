@@ -2,7 +2,7 @@
     background-image: url("assets/getapp-background.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
-    background-position: bottom center;
+    background-position: center center;
     width:100%;
     height:600px !important;      
 }
@@ -12,7 +12,7 @@
     text-align: center;
     position:relative;
     top:10rem;
-    width:40rem;
+    width:100%;
     padding:1rem;
     background: rgba(0, 0, 0,0.5);
 }

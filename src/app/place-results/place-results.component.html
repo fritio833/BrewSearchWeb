@@ -1,0 +1,21 @@
+<app-search id="search-box"></app-search>
+
+<div class="text-center loader" *ngIf="!showPlaces">
+  <app-loader></app-loader>
+</div>
+
+<div id="brewery-results" class="container" *ngIf="showPlaces">
+  <div class="row" *ngFor="let location of locations">
+    <div class="col-md-12">
+      <h4>
+        <a [routerLink]="['/bar',location.place_id]">{{location.name}}</a>
+      </h4>
+        <star-rating-comp class="star-rating-left" [starType]="'svg'"
+                          [readOnly]="true"
+                          [showHalfStars]="common.showHalfStar(locationRating)"
+                          [rating]="location.rating">             
+        </star-rating-comp>      
+      <h5>{{location.formatted_address}}</h5>
+    </div>
+  </div>
+</div>

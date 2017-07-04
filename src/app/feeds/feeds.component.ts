@@ -43,6 +43,8 @@ export class FeedsComponent implements OnInit {
         return checkin;
       });
       return _checkins;
+    },error=>{
+      console.log(error);
     });
 
     this.checkins.subscribe(resp=>{

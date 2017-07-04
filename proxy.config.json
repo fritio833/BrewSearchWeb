@@ -1,0 +1,16 @@
+{
+    "/api":{
+        "target":"http://api.brewerydb.com",
+        "secure":false,
+        "changeOrigin":true,
+        "logLevel":"debug",
+        "pathRewrite": {"^/api":""}
+    },
+    "/maps":{
+        "target":"https://maps.googleapis.com/maps/api/place/",
+        "secure":false,
+        "changeOrigin":true,
+        "logLevel":"debug",
+        "pathRewrite": {"^/maps":""}
+    }
+}

@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "bender-1487426215149"
+    "default": "bender-1487426215149",
+    "bsdev": "bender-1487426215149"
   }
 }

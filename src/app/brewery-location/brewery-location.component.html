@@ -1,0 +1,158 @@
+<app-search id="search-box"></app-search>
+
+<div class="text-center loader" *ngIf="!showBrewery">
+  <app-loader></app-loader>
+</div>
+
+<div id="brewery-detail" class="container" *ngIf="showBrewery">
+  <div class="row">
+    <div class="col-md-3 beer-img text-center">
+      
+      <img id="beer-logo" *ngIf="brewery.brewery.images!=null" [src]="brewery.brewery.images.squareMedium" />
+      <div id="social-media">
+        <a *ngIf="brewery.website" class="btn btn-warning" target="_blank" [href]="brewery.website" role="button">
+          <i class="fa fa-globe"></i> 
+          View Website
+        </a>
+        <a *ngIf="breweryBeers.length" [routerLink]="['/brewery-beers',common.paramCleanup(breweryPrimary.name),breweryPrimary.id]" class="btn btn-warning" role="button">
+          <i class="fa fa-beer"></i> 
+          Beer List
+        </a>         
+        <a *ngIf="brewery.phone" class="btn btn-warning">
+          <i class="fa fa-phone"></i> 
+          {{brewery.phone}}
+        </a>
+        <div *ngFor="let social of breweryPrimary.socialAccounts">
+
+          <a *ngIf="social.socialMediaId == 1" class="btn btn-warning" target="_blank" [href]="social.link" role="button">
+            <i class="fa fa-facebook"></i> 
+            Facebook
+          </a>
+          <a *ngIf="social.socialMediaId == 2" class="btn btn-warning" target="_blank" [href]="social.link" role="button">
+            <i class="fa fa-twitter"></i> 
+            Twitter
+          </a>                    
+        </div>                
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="text-center">
+        <h2>{{brewery.brewery.name}}</h2>
+        <div *ngIf="locationRating">
+          <star-rating-comp [starType]="'svg'"
+                            [readOnly]="true"
+                            [showHalfStars]="common.showHalfStar(locationRating)"
+                            [rating]="location.rating">             
+          </star-rating-comp>                
+        </div>
+      </div>
+      <div class="alert alert-warning beer-info">
+        <strong>Location Info</strong>
+        <div>
+          
+          <span *ngIf="breweryPrimary.established != null"><i class="fa fa-caret-right"></i>Established {{breweryPrimary.established}}</span>
+          <span *ngIf="breweryBeers.length">
+            <i class="fa fa-caret-right"></i>
+            <a [routerLink]="['/brewery-beers',common.paramCleanup(breweryPrimary.name),breweryPrimary.id]">
+             {{breweryBeers.length}} Beers
+            </a>
+          </span>          
+          <span *ngIf="breweryPrimary.isOrganic == 'Y'"><i class="fa fa-caret-right"></i>Organic Brewery</span>
+          <span *ngIf="breweryPrimary.isMassOwned == 'Y'"><i class="fa fa-caret-right"></i>Mass Owned</span>
+          <span *ngIf="breweryPrimary.brandClassification != null"><i class="fa fa-caret-right"></i>{{breweryPrimary.brandClassification}} brewery</span>
+          
+          <span *ngIf="brewery.inPlanning =='Y'"><i class="fa fa-caret-right"></i>Planning Phase</span>
+          <span *ngIf="brewery.isClosed == 'Y'"><i class="fa fa-caret-right"></i>Currently Closed</span>
+          <span *ngIf="brewery.isPrimary == 'Y'"><i class="fa fa-caret-right"></i>Primary Location</span>
+          <span *ngIf="brewery.openToPublic == 'Y'"><i class="fa fa-caret-right"></i>Open to Public</span>
+          <span *ngIf="brewery.locationTypeDisplay"><i class="fa fa-caret-right"></i>Type: {{brewery.locationTypeDisplay}}</span>
+          <span *ngIf="brewery.yearOpened"><i class="fa fa-caret-right"></i>Opened in {{brewery.yearOpened}}</span>
+          <span *ngIf="brewery.statusDisplay"><i class="fa fa-caret-right"></i>{{brewery.statusDisplay}} Brewery</span>          
+        </div>
+        <div>
+          <span><i class="fa fa-caret-right"></i>Location:{{brewery.locality}}, {{brewery.region}} {{brewery.countryIsoCode}}</span>
+        </div>        
+      </div>
+      <div *ngIf="locationPhotos.length && !showPhotos">
+        <button (click)="showAllPhotos()" class="btn btn-warning btn-block btn-large" role="button">
+          <i class="fa fa-camera-retro"></i> 
+          View {{locationPhotos.length}} Photos
+        </button>
+      </div>
+      <div id="place-photos" class="row" *ngIf="showPhotos">
+        <div class="col-md-12 text-center">
+          <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>      
+        </div>
+      </div>      
+      <div id="brewery-reviews" *ngIf="locationReviews.length" class="col-md-12">
+          <h4>{{breweryPrimary.nameShortDisplay}} Reviews</h4>
+          <div class="row" *ngFor="let review of locationReviews">
+            <hr />
+            <div class="col-md-1">
+              <img [src]="review.profile_photo_url" class="rounded-circle review-avatar" />
+            </div>
+            <div class="col-md-11">
+              <p *ngIf="review.rating">
+                <star-rating-comp [starType]="'icon'"
+                                  [showHalfStars]="true"
+                                  [readOnly]="true"
+                                  [rating]="review.rating">             
+                </star-rating-comp>
+              </p>
+              <p *ngIf="review.text">
+                <b>{{review.author_name}} said:</b>
+                {{review.text}}
+              </p>
+              <p class="text-right">
+               {{common.timeConverter(review.time)}}
+              </p>
+            </div>            
+          </div>
+      </div>
+      <!--           
+      <div class="beer-list" *ngIf="breweryBeers.length">
+        <h4>{{breweryPrimary.nameShortDisplay}}'s Beer List</h4>
+        <hr />
+        <div class="row alert alert-warning beer-row" *ngFor="let beer of breweryBeers">
+          <div class="col-md-2">
+            <a [routerLink]="['/beer',beer.id]">
+              <img *ngIf="beer.labels" [src]="beer.labels.icon" />
+            </a>
+          </div>
+          <div class="col-md-5 text-left">
+            <h4><a [routerLink]="['/beer',beer.id]">{{beer.nameDisplay}}</a></h4>
+            <p>{{beer.style.shortName}} <span *ngIf="beer.abv"> - {{beer.abv}}%</span></p>
+          </div>          
+        </div>
+      </div>
+      -->      
+      <div *ngIf="brewery.hoursOfOperation">    
+        <h4>Hours of Operation</h4>
+        <hr />
+        <p>
+          {{brewery.hoursOfOperation}}
+        </p>
+      </div>      
+      <!-- <h4>{{brewery.nameShortDisplay}}'s Beer List</h4> -->
+      <div *ngIf="brewery.brewery.description">
+        <h4>Description</h4>
+        <hr />
+        <p>
+          {{brewery.brewery.description}}
+        </p>
+      </div>
+
+      <div *ngIf="!showMap" class="text-center check-map">
+        <button (click)="showLocationMap()" class="btn btn-warning" >Show Map</button>
+      </div>      
+      <div *ngIf="showMap">
+          <div class="check-map" class="text-center">
+            <strong> {{brewery.streetAddress}} - {{brewery.locality}}, {{brewery.region}} {{brewery.postalCode}} {{brewery.countryIsoCode}}</strong>
+            <agm-map [latitude]="brewery.latitude" [longitude]="brewery.longitude">
+              <agm-marker [latitude]="brewery.latitude" [longitude]="brewery.longitude"></agm-marker>
+            </agm-map> 
+          </div>         
+      </div>           
+    </div>
+  </div>
+</div>

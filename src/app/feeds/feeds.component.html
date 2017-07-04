@@ -30,11 +30,10 @@
              <i class="fa fa-quote-left"></i> {{checkin.comments}} <i class="fa fa-quote-right"></i>
             </div>
             <div *ngIf="checkin.beerRating">
-              <ngb-rating readonly="true" max="5" [(rate)]="checkin.beerRating">
-                <ng-template let-fill="fill">
-                  <span class="star" [class.filled]="fill === 100">&#9733;</span>
-                </ng-template>            
-              </ngb-rating>
+              <star-rating-comp [starType]="'svg'"
+                                [readOnly]="true"
+                                [rating]="checkin.beerRating">             
+              </star-rating-comp>              
             </div>
           </div>
         </div>
