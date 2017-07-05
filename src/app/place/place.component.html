@@ -68,7 +68,7 @@
     </div>
   </div>
   <div class="row">
-    <div *ngIf="location.reviews" class="col-md-8">
+    <div *ngIf="location.reviews" class="col-md-7">
         <div class="row" *ngFor="let review of location.reviews">
           <hr />
           <div class="col-md-1">
@@ -76,7 +76,7 @@
           </div>
           <div class="col-md-10">
             <p *ngIf="review.rating">
-              <star-rating-comp [starType]="'icon'"
+              <star-rating-comp [starType]="'svg'"
                                 [showHalfStars]="true"
                                 [readOnly]="true"
                                 [rating]="review.rating">             
@@ -84,7 +84,7 @@
             </p>
             <p *ngIf="review.text">
               <b>{{review.author_name}} said:</b>
-              {{review.text}}
+              <read-more [text]="review.text" [maxLength]="200"></read-more>
             </p>
             <p class="text-right">
               {{common.timeConverter(review.time)}}
@@ -92,11 +92,19 @@
           </div>            
         </div>
     </div>
-    <div id="bar-hours" class="col-md-3 alert alert-warning beer-info" *ngIf="location.opening_hours">
-      <h4>Bar Hours</h4>
-      <div *ngFor="let hour of location.opening_hours.weekday_text">
-        {{hour}}
+    <div id="bar-hours" class="col-md-5" *ngIf="location.opening_hours">
+      <div class="alert alert-warning beer-info">
+        <h4>Bar Hours</h4>
+        <div *ngFor="let hour of location.opening_hours.weekday_text">
+          {{hour}}
+        </div>
       </div>
+      <div class="check-map" class="text-center">
+        <strong>{{location.vicinity}}</strong>
+        <agm-map [latitude]="location.geometry.location.lat" [longitude]="location.geometry.location.lng">
+          <agm-marker [latitude]="location.geometry.location.lat" [longitude]="location.geometry.location.lng"></agm-marker>
+        </agm-map> 
+      </div>      
     </div>
   </div>
 </div>

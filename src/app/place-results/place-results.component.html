@@ -5,17 +5,39 @@
 </div>
 
 <div id="brewery-results" class="container" *ngIf="showPlaces">
+  <div class="row container text-right">
+    <button *ngIf="showPrevious" class="btn btn-warning" (click)="getPrevious()">
+      <i class="fa fa-chevron-left"></i>
+      Previous
+    </button>    
+    <button [disabled]="!nextToken" class="btn btn-warning" (click)="getNextPlaces()">
+      Next
+      <i class="fa fa-chevron-right"></i>
+    </button>
+  </div>   
   <div class="row" *ngFor="let location of locations">
     <div class="col-md-12">
       <h4>
         <a [routerLink]="['/bar',location.place_id]">{{location.name}}</a>
       </h4>
-        <star-rating-comp class="star-rating-left" [starType]="'svg'"
+      <div class="place-rating" align="left">
+        <star-rating-comp [starType]="'svg'"
                           [readOnly]="true"
                           [showHalfStars]="common.showHalfStar(locationRating)"
                           [rating]="location.rating">             
-        </star-rating-comp>      
+        </star-rating-comp>
+      </div>      
       <h5>{{location.formatted_address}}</h5>
     </div>
   </div>
+  <div class="row container text-right">
+    <button *ngIf="showPrevious" class="btn btn-warning" (click)="getPrevious()">
+      <i class="fa fa-chevron-left"></i>
+      Previous
+    </button>    
+    <button [disabled]="!nextToken" class="btn btn-warning" (click)="getNextPlaces()">
+      Next
+      <i class="fa fa-chevron-right"></i>
+    </button>
+  </div>  
 </div>

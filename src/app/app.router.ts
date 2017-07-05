@@ -41,6 +41,7 @@ export const router: Routes = [
   { path:'brewery-beers/:breweryName/:id',component:BreweryBeersComponent},
   { path:'beer/:id',component:BeerDetailComponent},
   { path:'bars/:city/:state',component:PlaceResultsComponent},
+  { path:'bars/:city/:state/:token',component:PlaceResultsComponent},
   { path:'bar/:id',component:PlaceComponent}
 ]
 

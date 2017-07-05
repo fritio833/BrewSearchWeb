@@ -27,6 +27,7 @@ export class SearchComponent implements OnInit {
   constructor(public router:Router,public geo:GoogleService) {}
 
   ngOnInit() {
+    console.log('router',this.router);
   }
 
   doBeerSearch() {

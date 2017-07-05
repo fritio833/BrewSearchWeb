@@ -19,5 +19,14 @@
 }
 
 .rating {
-    float: left !important;
+    justify-content: left !important;
+}
+
+.place-rating {
+  width: 10rem !important;
+  justify-content: left !important;
+}
+
+.prev-next {
+  padding-right:2rem;  
 }

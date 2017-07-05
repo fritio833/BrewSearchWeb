@@ -114,6 +114,6 @@ agm-map {
   height: 300px;
 }
 
-star-rating-comp .rating {
+.star-rating-left {
   justify-content: left !important;
 }

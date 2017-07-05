@@ -99,6 +99,18 @@ export class GoogleService {
 
   }
 
+    searchByPlaceTypeNextToken(nextToken) {
+   
+     return this.http.get(this.googlePlacesURL 
+        + 'textsearch/json?pagetoken='
+        + nextToken
+        + '&key=' 
+        + environment.google.googlePlacesAPIKey)
+        .retryWhen(error => error.delay(500))
+        .timeout(5000)        
+        .map(res => res.json());
+  }
+
   placeDetail(placeId) {
 
     return this.http.get(this.googlePlacesURL + 'details/json?placeid='
