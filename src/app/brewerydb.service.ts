@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import { environment } from '../environments/environment';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/delay';
@@ -18,7 +18,7 @@ export class BrewerydbService {
     this.breweryDbAPI = '3c7ec73417afb44ae7a4450482f99d70';
 
     if (environment.production)
-      this.breweryDbUrl = 'http://api.brewerydb.com/';
+      this.breweryDbUrl = 'https://api.brewerydb.com/';
     else
       this.breweryDbUrl = '/api/';
   }
@@ -29,7 +29,7 @@ export class BrewerydbService {
 
     if (page != null)
       _page = '&p='+page;
-
+    
     return this.http.get(this.breweryDbUrl 
     + 'v2/search/?key=' 
     + this.breweryDbAPI 

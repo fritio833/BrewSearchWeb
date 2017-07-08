@@ -6,11 +6,11 @@ export const environment = {
     googleMapsAPIKey:'AIzaSyAKs0BGHgtV5I--IvIwsGkD3c_EFV0yXtY'
   },  
   firebase: {
-    apiKey: "AIzaSyCd-WZs4O8gNx9qVlwwyRdK6_qY60WuQl0",
-    authDomain: "bender-1487426215149.firebaseapp.com",
-    databaseURL: "https://bender-1487426215149.firebaseio.com",
-    projectId: "bender-1487426215149",
-    storageBucket: "bender-1487426215149.appspot.com",
-    messagingSenderId: "925035513978"
+    apiKey: "AIzaSyBnnqKst90fOf5I8HwYeNnLkrz6EjYGa4k",
+    authDomain: "brewsearchdev.firebaseapp.com",
+    databaseURL: "https://brewsearchdev.firebaseio.com",
+    projectId: "brewsearchdev",
+    storageBucket: "",
+    messagingSenderId: "1019028764820"
   }   
 };

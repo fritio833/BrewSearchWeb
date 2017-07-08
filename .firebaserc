@@ -1,6 +1,7 @@
 {
   "projects": {
     "default": "bender-1487426215149",
-    "bsdev": "bender-1487426215149"
+    "bsdev": "bender-1487426215149",
+    "dev": "brewsearchdev"
   }
 }
