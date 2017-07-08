@@ -13,14 +13,14 @@ import { CommonService} from '../common.service';
 })
 export class BreweryResultsComponent implements OnInit {
 
-  private breweries = [];
-  private qBrewery:string;
-  private msg:string;
+  public breweries = [];
+  public qBrewery:string;
+  public msg:string;
   public showFeed:boolean = false;
   public isLocationSearch:boolean = false;
   private subscription:Subscription;
-  private lat:number;
-  private lng:number;
+  public lat:number;
+  public lng:number;
   public numPages:number = 0;
   public currentPage:number = 1;
   public pageSize:number = 50;

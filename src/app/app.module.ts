@@ -12,7 +12,7 @@ import { environment } from '../environments/environment';
 import { routes } from './app.router';
 import { NgxGalleryModule } from 'ngx-gallery';
 
-import { Angular2FontAwesomeModule } from 'angular2-font-awesome/angular2-font-awesome';
+//import { Angular2FontAwesomeModule } from 'angular2-font-awesome/angular2-font-awesome';
 import { StarRatingModule } from 'angular-star-rating';
 
 import { AppComponent } from './app.component';
@@ -80,7 +80,7 @@ import { GoogleService } from './google.service';
     }),    
     FormsModule,
     HttpModule,
-    Angular2FontAwesomeModule,
+    //Angular2FontAwesomeModule,
     routes,
     AngularFireDatabaseModule,
     AngularFireAuthModule,    

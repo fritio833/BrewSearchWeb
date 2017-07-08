@@ -12,9 +12,9 @@ import { CommonService} from '../common.service';
 })
 export class BeerResultsComponent implements OnInit {
 
-  private beers = [];
-  private qBeer:string;
-  private msg:string;
+  public beers = [];
+  public qBeer:string;
+  public msg:string;
   public showFeed:boolean = false;
   private subscription:Subscription;
   public numPages:number = 0;
